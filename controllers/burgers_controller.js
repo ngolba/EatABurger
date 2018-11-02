@@ -12,6 +12,7 @@ const updateDisplay =  (res) => all().then(response => res.render('index', {burg
 
 router.get('/', (req, res) => updateDisplay(res))
 
-router.post('/api/burgers', (req, res) => insert([req.body.burger_name, req.body.devoured]).then(() => updateDisplay(res)))
+router.put('/api/burgers', (req, res) => insert([req.body.burger_name, req.body.devoured]).then(() => updateDisplay(res)))
 
+router.post('/api/burgers', (req, res) => update({'devoured': '1'}, req.body.id).then(() => updateDisplay(res)))
 module.exports = router;

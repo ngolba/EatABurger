@@ -10,7 +10,7 @@ $('#burgerForm').submit((e) => {
     
     e.preventDefault()
     $.ajax('/api/burgers', {
-        method: 'POST',
+        method: 'PUT',
         data: newBurger
     }).then((response) => {
         $('#burgerInput').val('')
@@ -19,5 +19,11 @@ $('#burgerForm').submit((e) => {
 })
 
 $('.devourBtn').click(() => {
-
+    let burgerDevoured = {id: $(event.currentTarget).attr('id')}
+    $.ajax('/api/burgers', {
+        method: 'POST',
+        data: burgerDevoured
+    }).then((response)  => {
+        location.reload()
+    })
 })

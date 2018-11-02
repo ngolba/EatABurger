@@ -13,8 +13,8 @@ const burgers = {
     insert(vals) {
         return new Promise((resolve, reject) => insertOne('burgers', ['burger_name', 'devoured'], vals).then(res => resolve(res)))
     },
-    update(vals, condition) {
-        return new Promise((resolve, reject) => updateOne('burgers', vals, condition).then(res => resolve(res)))
+    update(vals, id) {
+        return new Promise((resolve, reject) => updateOne('burgers', vals, `id = ${id}`).then(res => resolve(res)))
     }
 }
 
