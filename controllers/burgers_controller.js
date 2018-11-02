@@ -2,21 +2,16 @@ const express = require('express');
 const router = express.Router();
 const burgers = require('../models/burger');
 
-const {all, insert, update} = burgers;
+const {
+    all,
+    insert,
+    update
+} = burgers;
 
-router.get('/', (req, res) => {
-    all().then(response => {
-        let hbobj = {burgers: response}
-        console.log(hbobj)
-        res.render('index', hbobj)
-    })
-})
+const updateDisplay =  (res) => all().then(response => res.render('index', {burgers: response}))
 
-router.post('/api/burgers', (req, res) =>{
-    console.log('request: ',req)
-    insert(req.body.name, req.body.devoured).then(response => {
-        console.log('response: ',response);
-    })
-})
+router.get('/', (req, res) => updateDisplay(res))
+
+router.post('/api/burgers', (req, res) => insert([req.body.burger_name, req.body.devoured]).then(() => updateDisplay(res)))
 
 module.exports = router;

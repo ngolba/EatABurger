@@ -22,8 +22,9 @@ const orm = {
 
     insertOne(table, cols, vals) {
         return new Promise((resolve, reject) => {
-            let queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${questions(vals.length)})`;
-            connection.query(queryString, (err, res) => {
+            let queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${questions(vals.length)});`;
+            console.log(queryString)
+            connection.query(queryString, vals, (err, res) => {
                 if (err) throw err;
                 resolve(res);
             })
@@ -32,7 +33,7 @@ const orm = {
 
     updateOne(table, vals, condition) {
         return new Promise((resolve, reject) => {
-            let queryString = `UPDATE ${table} SET ${sqlVals(vals)} WHERE ${condition}`;
+            let queryString = `UPDATE ${table} SET ${sqlVals(vals)} WHERE ${condition};`;
             connection.query(queryString, (err, res) => {
                 if (err) throw err;
                 resolve(res);
