@@ -12,4 +12,11 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/api/burgers', (req, res) =>{
+    console.log('request: ',req)
+    insert(req.body.name, req.body.devoured).then(response => {
+        console.log('response: ',response);
+    })
+})
+
 module.exports = router;

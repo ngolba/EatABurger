@@ -10,20 +10,27 @@
 
 <div class="container">
     <div class="row">
-        
-        <div class="col-6">
-            <ul class="list-group">
-                {{#each burgers}}
-                {{#if devoured}}
-                <li class="list-group-item">{{id}} {{burger_name}}</li>
-                {{/if}}
-                {{/each}}
-            </ul>
+        <div class="col-12">
+            <div class="list-group">
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="list-group-item-action list-group-item active">Burgers Available</button>
+                        {{#each burgers}}
+                        {{#if devoured}}
+                        <button type="button" class="list-group-item list-group-item-action">{{id}} {{burger_name}}</button>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="list-group-item list-group-item-action active">Burgers Devoured</button>
+                        {{#each burgers}}
+                        {{#unless devoured}}
+                        <button type="button" class="list-group-item list-group-item-action">{{id}} {{burger_name}}</button>
+                        {{/unless}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-6">
-            <ul class="list-group">
-            </ul>
-        </div>
-        
     </div>
 </div>
